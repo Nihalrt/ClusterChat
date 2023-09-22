@@ -2,9 +2,12 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+/**
+ * Server-side implementation of the Multi-Client Chat Application.
+ */
 public class ChatServer {
-    private static final int PORT = 12345;
-    private static Set<PrintWriter> clients = new HashSet<>();
+    private static final int PORT = 12345; // The server's listening port
+    private static Set<PrintWriter> clients = new HashSet<>(); // Set to store connected clients
 
     public static void main(String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
@@ -25,6 +28,7 @@ public class ChatServer {
         }
     }
 
+    // This inner class handles each connected client
     private static class ClientHandler implements Runnable {
         private Socket clientSocket;
         private PrintWriter writer;
@@ -38,8 +42,8 @@ public class ChatServer {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
                 String message;
                 while ((message = reader.readLine()) != null) {
-                    System.out.println("Received message: " + message);
-                    broadcast(message);
+                    System.out.println("Received message: " + message); // Print received messages
+                    broadcast(message); // Broadcast the message to all clients
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -54,6 +58,7 @@ public class ChatServer {
         }
     }
 
+    // This method broadcasts a message to all connected clients
     private static void broadcast(String message) {
         for (PrintWriter client : clients) {
             client.println(message);
