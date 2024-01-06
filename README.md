@@ -1,8 +1,8 @@
-# Multi-Client Chat Application
+# ClusterChat
 
 ## Overview
 
-The Multi-Client Chat Application is a simple yet effective Java-based chat system that enables multiple clients to connect to a central server and exchange real-time messages. This project consists of both client-side and server-side implementations, allowing users to chat with each other seamlessly.
+A Multi-Client Chat Application simple yet effective Java-based chat system that enables multiple clients to connect to a central server and exchange real-time messages. This project consists of both client-side and server-side implementations, allowing users to chat with each other seamlessly.
 
 ## Features
 
